@@ -17,8 +17,7 @@
 
 - has_many :items
 - has_many :comments
-- belongs_to :buyers
-- belongs_to :history
+- has_many :history
 
 
 ## items テーブル
@@ -27,20 +26,19 @@
 | ---------------- | ---------- | ----------------- |
 | product          | string     | null: false       |
 | content          | text       | null: false       |
-| price            | int        | null: false       |
+| price            | integer    | null: false       |
 | category_id      | integer    | null: false       |
 | condition_id     | integer    | null: false       |
 | delivery_id      | integer    | null: false       |
 | area_id          | integer    | null: false       |
 | time_required_id | integer    | null: false       |
-| users_id         | references | foreign_key: true |
+| users            | references | foreign_key: true |
 
 ### association
 
 - belongs_to :user
-- belongs_to :buyer
 - has_many :comments
-belongs_to :history
+- has_one :history
 
 
 ## comments テーブル
@@ -62,7 +60,7 @@ belongs_to :history
 | Colum           | Type    | Options     |
 | --------------- | ------- | ----------- |
 | postal_code     | string  | null: false |
-| buyer_id        | integer | null: false |
+| prefecture_id   | integer | null: false |
 | city            | string  | null: false |
 | billing_address | string  | null: false |
 | phone_number    | string  | null: false |
@@ -70,18 +68,17 @@ belongs_to :history
 
 ### association
 
-- has_one :user
-- has_one :item
+
 
 
 ## histories テーブル
 
-| Colum    | Type       | Options           |
-| -------- | ---------- | ----------------- |
-| users_id | references | foreign_key: true |
-| items_id | references | foreign_key: true |
+| Colum | Type       | Options           |
+| ----- | ---------- | ----------------- |
+| users | references | foreign_key: true |
+| items | references | foreign_key: true |
 
 ### association
 
 - has_many :users
-- has_many :items
+- belongs_to :item
