@@ -49,13 +49,13 @@
 
 ## buyers テーブル
 
-| Colum           | Type   | Options     |
-| --------------- | ------ | ----------- |
-| postal_code     | string | null: false |
-| prefecture      | string | null: false |
-| city            | string | null: false |
-| billing_address | string | null: false |
-| phone_number    | string | null: false |
+| Colum           | Type    | Options     |
+| --------------- | ------- | ----------- |
+| postal_code     | string  | null: false |
+| buyer_id        | integer | null: false |
+| city            | string  | null: false |
+| billing_address | string  | null: false |
+| phone_number    | string  | null: false |
 
 
 ### association
