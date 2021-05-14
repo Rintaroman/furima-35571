@@ -2,14 +2,16 @@
 
 ## users テーブル
 
-| Colum     | Type   | Options     |
-| --------- | ------ | ----------- |
-| nickname  | string | null: false |
-| email     | string | null: false |
-| password  | string | null: false |
-| name      | string | null: false |
-| name_kana | string | null: false |
-| birthday  | date   | null: false |
+| Colum              | Type   | Options      |
+| ------------------ | ------ | ------------ |
+| nickname           | string | null: false  |
+| email              | string | unique: true |
+| encrypted_password | string | null: false  |
+| name               | string | null: false  |
+| first_name         | string | null: false  |
+| name_kana          | string | null: false  |
+| first_name_kana    | string | null: false  |
+| birthday           | date   | null: false  |
 
 ### association
 
@@ -20,15 +22,11 @@
 
 ## items テーブル
 
-| Colum           | Type   | Options     |
-| --------------- | ------ | ----------- |
-| product         | string | null: false |
-| category        | text   | null: false |
-| condition       | string | null: false |
-| delivery_charge | string | null: false |
-| area            | string | null: false |
-| time_required   | string | null: false |
-| price           | int    | null: false |
+| Colum   | Type    | Options     |
+| ------- | ------- | ----------- |
+| product | string  | null: false |
+| item_id | integer | null: false |
+| price   | int     | null: false |
 
 ### association
 
@@ -51,16 +49,13 @@
 
 ## buyers テーブル
 
-| Colum           | Type   | Options |
-| --------------- | ------ | ------- |
-| credit_num      | string |         |
-| credit_expire   | string |         |
-| credit_code     | string |         |
-| postal_code     | string |         |
-| prefecture      | string |         |
-| city            | string |         |
-| billing_address | string |         |
-| phone_number    | string |         |
+| Colum           | Type   | Options     |
+| --------------- | ------ | ----------- |
+| postal_code     | string | null: false |
+| prefecture      | string | null: false |
+| city            | string | null: false |
+| billing_address | string | null: false |
+| phone_number    | string | null: false |
 
 
 ### association
