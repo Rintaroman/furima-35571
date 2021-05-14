@@ -17,22 +17,22 @@
 
 - has_many :items
 - has_many :comments
-- has_many :history
+- has_many :histories
 
 
 ## items テーブル
 
-| Colum            | Type       | Options           |
-| ---------------- | ---------- | ----------------- |
-| product          | string     | null: false       |
-| content          | text       | null: false       |
-| price            | integer    | null: false       |
-| category_id      | integer    | null: false       |
-| condition_id     | integer    | null: false       |
-| delivery_id      | integer    | null: false       |
-| area_id          | integer    | null: false       |
-| time_required_id | integer    | null: false       |
-| users            | references | foreign_key: true |
+| Colum              | Type       | Options           |
+| ------------------ | ---------- | ----------------- |
+| product            | string     | null: false       |
+| content            | text       | null: false       |
+| price              | integer    | null: false       |
+| category_id        | integer    | null: false       |
+| condition_id       | integer    | null: false       |
+| delivery_charge_id | integer    | null: false       |
+| prefecture_id      | integer    | null: false       |
+| time_required_id   | integer    | null: false       |
+| user               | references | foreign_key: true |
 
 ### association
 
@@ -46,8 +46,8 @@
 | Colum    | Type       | Options           |
 | -------- | ---------- | ----------------- |
 | comments | text       | null: false       |
-| users_id | references | foreign_key: true |
-| items_id | references | foreign_key: true |
+| user     | references | foreign_key: true |
+| item     | references | foreign_key: true |
 
 ### association
 
@@ -57,17 +57,17 @@
 
 ## buyers テーブル
 
-| Colum           | Type    | Options     |
-| --------------- | ------- | ----------- |
-| postal_code     | string  | null: false |
-| prefecture_id   | integer | null: false |
-| city            | string  | null: false |
-| billing_address | string  | null: false |
-| phone_number    | string  | null: false |
-
+| Colum         | Type       | Options           |
+| ------------- | ---------- | ----------------- |
+| postal_code   | string     | null: false       |
+| prefecture_id | integer    | null: false       |
+| city          | string     | null: false       |
+| address       | string     | null: false       |
+| building_name | string     |                   |
+| phone_number  | string     | null: false       |
 
 ### association
-
+has_one :history
 
 
 
@@ -75,10 +75,12 @@
 
 | Colum | Type       | Options           |
 | ----- | ---------- | ----------------- |
-| users | references | foreign_key: true |
-| items | references | foreign_key: true |
+| user  | references | foreign_key: true |
+| item  | references | foreign_key: true |
+| buyer | references | foreign_key: true |
 
 ### association
 
-- has_many :users
+- belongs_to :user
 - belongs_to :item
+- belongs_to :buyer
