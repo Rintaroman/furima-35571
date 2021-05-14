@@ -65,9 +65,10 @@
 | address       | string     | null: false       |
 | building_name | string     |                   |
 | phone_number  | string     | null: false       |
+| history       | references | foreign_key: true |
 
 ### association
-has_one :history
+belongs_to :history
 
 
 
@@ -77,10 +78,9 @@ has_one :history
 | ----- | ---------- | ----------------- |
 | user  | references | foreign_key: true |
 | item  | references | foreign_key: true |
-| buyer | references | foreign_key: true |
 
 ### association
 
 - belongs_to :user
 - belongs_to :item
-- belongs_to :buyer
+- has_one :buyer
