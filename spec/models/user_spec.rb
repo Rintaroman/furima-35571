@@ -64,7 +64,7 @@ RSpec.describe User, type: :model do
         user2.valid?
         expect(user2.errors[:email]).to include("has already been taken")
       end
-      it 'passwordが６文字以下なら登録できない' do
+      it 'passwordが5文字以下なら登録できない' do
         @user.password = 'aA1'
         @user.valid?
         expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
