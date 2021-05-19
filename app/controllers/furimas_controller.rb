@@ -8,17 +8,26 @@ class FurimasController < ApplicationController
   end
 
   def create
-    Furima.create(furima_paramas)
+    @furima = Furima.new(furima_paramas)
+    if @furima.save
+      redirect_to root_path
+    else
+      render :new
+    end
   end
+    
+  
 
 
   private
 
   def furima_paramas
-    params.require(:item).permit(:product, :content, :price, :category_id, :condition_id, :delivery_charge_id, :prefecture_id, :time_required_id, :image).merge(user_id: current_user.id)
+    params.require(:furima).permit(:product, :content, :price, :category_id, :condition_id, :delivery_charge_id, :prefecture_id, :time_required_id, :image).merge(user_id: current_user.id)
   end
 
 
   
 
 end
+
+  
