@@ -29,29 +29,29 @@ RSpec.describe Furima, type: :model do
         expect(@furima.errors.full_messages).to include("Price can't be blank")
       end
       it 'category_idが--では出品できない場合' do
-        @furima.category_id= '1'
+        @furima.category_id= '0'
         @furima.valid?
-        expect(@furima.errors.full_messages).to include("Category must be other than 1")
+        expect(@furima.errors.full_messages).to include("Category must be other than 0")
       end
       it 'condition_idが--では出品できない場合' do
-        @furima.condition_id= '1'
+        @furima.condition_id= '0'
         @furima.valid?
-        expect(@furima.errors.full_messages).to include("Condition must be other than 1")
+        expect(@furima.errors.full_messages).to include("Condition must be other than 0")
       end
       it 'delivery_charge_idが--では出品できない場合' do
-        @furima.delivery_charge_id= '1'
+        @furima.delivery_charge_id= '0'
         @furima.valid?
-        expect(@furima.errors.full_messages).to include("Delivery charge must be other than 1")
+        expect(@furima.errors.full_messages).to include("Delivery charge must be other than 0")
       end
       it 'prefecture_idが--では出品できない場合' do
-        @furima.prefecture_id= '1'
+        @furima.prefecture_id= '0'
         @furima.valid?
-        expect(@furima.errors.full_messages).to include("Prefecture must be other than 1")
+        expect(@furima.errors.full_messages).to include("Prefecture must be other than 0")
       end
       it 'time_required_idが--では出品できない場合' do
-        @furima.time_required_id= '1'
+        @furima.time_required_id= '0'
         @furima.valid?
-        expect(@furima.errors.full_messages).to include("Time required must be other than 1")
+        expect(@furima.errors.full_messages).to include("Time required must be other than 0")
       end
 
       it 'imageが空では出品できない場合' do
