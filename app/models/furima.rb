@@ -1,4 +1,8 @@
 class Furima < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :category, :condition, :delivery_charge, :prefecture, :time_required
+  has_one_attached :image
+
   with_options presence: true do
     validates :product
     validates :content
@@ -12,5 +16,5 @@ class Furima < ApplicationRecord
     validates :prefecture_id
     validates :time_required_id
   end
-
+end
   

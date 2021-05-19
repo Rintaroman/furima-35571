@@ -1,6 +1,6 @@
 class CreateFurimas < ActiveRecord::Migration[6.0]
   def change
-    create_table :items do |t|
+    create_table :furimas do |t|
       t.string          :product,               null: false
       t.text            :content,               null: false
       t.integer         :price,                 null: false
