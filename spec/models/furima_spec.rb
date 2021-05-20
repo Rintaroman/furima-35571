@@ -13,7 +13,7 @@ RSpec.describe Furima, type: :model do
     end
 
     context '商品を出品できない場合' do
-      it 'productが空では出品できない場合' do   #bundle exec rspec spec/models/furima_spec.rb
+      it 'productが空では出品できない場合' do   
         @furima.product= ''
         @furima.valid?
         expect(@furima.errors.full_messages).to include("Product can't be blank")
@@ -29,27 +29,27 @@ RSpec.describe Furima, type: :model do
         expect(@furima.errors.full_messages).to include("Price can't be blank")
       end
       it 'category_idが--では出品できない場合' do
-        @furima.category_id= '0'
+        @furima.category_id= 0
         @furima.valid?
         expect(@furima.errors.full_messages).to include("Category must be other than 0")
       end
       it 'condition_idが--では出品できない場合' do
-        @furima.condition_id= '0'
+        @furima.condition_id= 0
         @furima.valid?
         expect(@furima.errors.full_messages).to include("Condition must be other than 0")
       end
       it 'delivery_charge_idが--では出品できない場合' do
-        @furima.delivery_charge_id= '0'
+        @furima.delivery_charge_id= 0
         @furima.valid?
         expect(@furima.errors.full_messages).to include("Delivery charge must be other than 0")
       end
       it 'prefecture_idが--では出品できない場合' do
-        @furima.prefecture_id= '0'
+        @furima.prefecture_id= 0
         @furima.valid?
         expect(@furima.errors.full_messages).to include("Prefecture must be other than 0")
       end
       it 'time_required_idが--では出品できない場合' do
-        @furima.time_required_id= '0'
+        @furima.time_required_id= 0
         @furima.valid?
         expect(@furima.errors.full_messages).to include("Time required must be other than 0")
       end
@@ -61,18 +61,29 @@ RSpec.describe Furima, type: :model do
       end
       
       it '販売価格が300円未満では出品できない場合' do
-        @furima.price= '10'
+        @furima.price= 10
         @furima.valid?
         expect(@furima.errors.full_messages).to include("Price must be greater than or equal to 300")
       end
       it '販売価格が9999999円を超えたら出品できない' do
-        @furima.price= '10000000'
+        @furima.price= 10000000
         @furima.valid?
         expect(@furima.errors.full_messages).to include("Price must be less than or equal to 9999999")
       end
       it '販売価格は全角数字では出品できない' do
         @furima.price= '１００００'
         @furima.valid?
+        expect(@furima.errors.full_messages).to include("Price is not a number")
+      end
+      it '販売価格は半角英数混合では登録できないこと' do
+        @furima.price= 'a100'
+        @furima.valid?
+        expect(@furima.errors.full_messages).to include("Price is not a number")
+      end
+      it '販売価格は半角英語だけでは登録できないこと' do
+        @furima.price= 'aaa'
+        @furima.valid?
+        binding.pry
         expect(@furima.errors.full_messages).to include("Price is not a number")
       end
       
@@ -82,12 +93,5 @@ RSpec.describe Furima, type: :model do
 
 
 
-
-
-
-
-
-
 end
-#bundle exec rspec spec/models/furima_spec.rb
-#binding.pry
+

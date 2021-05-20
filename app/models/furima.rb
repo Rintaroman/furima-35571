@@ -1,13 +1,18 @@
 class Furima < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :category, :condition, :delivery_charge, :prefecture, :time_required, :user
+  belongs_to :category
+  belongs_to :condition
+  belongs_to :delivery_charge
+  belongs_to :Prefecture
+  belongs_to :time_required
+  belongs_to :user
   has_one_attached :image
 
   with_options presence: true do
     validates :image
     validates :product
     validates :content
-    validates :price,numericality: { in: 300..9999999 },format:{with: /\A[0-9]+\z/}
+    validates :price
   end
   
   with_options numericality: { other_than: 0 } do

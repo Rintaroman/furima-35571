@@ -1,5 +1,7 @@
 class FurimasController < ApplicationController
 
+  before_action :authenticate_user!, only: [:new, :edit, :delete]
+  
   def index
   end
 

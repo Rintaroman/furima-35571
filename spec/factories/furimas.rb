@@ -2,12 +2,13 @@ FactoryBot.define do
   factory :furima do
     product               {'samp'}
     content               {'samp'}
-    price                 {'1000'}
-    category_id           {'2'}
-    condition_id          {'2'}
-    delivery_charge_id    {'2'}
-    prefecture_id         {'28'}
-    time_required_id      {'2'}
+    price                 {1000}
+    category_id           {2}
+    condition_id          {2}
+    delivery_charge_id    {2}
+    prefecture_id         {28}
+    time_required_id      {2}
+    association :user
     
 
     after(:build) do |furima|
