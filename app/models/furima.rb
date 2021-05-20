@@ -3,7 +3,7 @@ class Furima < ApplicationRecord
   belongs_to :category
   belongs_to :condition
   belongs_to :delivery_charge
-  belongs_to :Prefecture
+  belongs_to :prefecture
   belongs_to :time_required
   belongs_to :user
   has_one_attached :image
