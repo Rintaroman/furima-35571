@@ -22,7 +22,19 @@ class FurimasController < ApplicationController
   def show
     @furima = Furima.find(params[:id])
   end
-  
+
+  def edit
+    @furima = Furima.find(params[:id])
+  end
+
+  def update
+    @furima = Furima.find(params[:id])
+    if @furima.update(furima_paramas)
+      redirect_to furima_path(@furima.id)
+    else
+      render :edit
+    end
+  end
 
 
   private
