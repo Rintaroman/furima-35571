@@ -1,7 +1,7 @@
 class FurimasController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update] #:delete]
   before_action :set_furima, only: [:show, :edit, :update]
   before_action :set_edit, only: [:edit, :update]
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update] #:delete]
   
   def index
     @furimas = Furima.order("created_at DESC")
