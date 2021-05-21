@@ -1,6 +1,6 @@
 class FurimasController < ApplicationController
 
-  before_action :authenticate_user!, only: [:new, :create, ]#:edit, :delete]
+  before_action :authenticate_user!, only: [:new, :create, :edit,] #:delete]
   
   def index
     @furimas = Furima.order("created_at DESC")
@@ -25,6 +25,9 @@ class FurimasController < ApplicationController
 
   def edit
     @furima = Furima.find(params[:id])
+    unless @furima.user_id == current_user.id
+      redirect_to root_path
+    end
   end
 
   def update
