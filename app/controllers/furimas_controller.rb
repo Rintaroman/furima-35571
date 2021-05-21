@@ -1,6 +1,7 @@
 class FurimasController < ApplicationController
-
-  before_action :authenticate_user!, only: [:new, :create, :edit,] #:delete]
+  before_action :set_furima, only: [:show, :edit, :update]
+  before_action :set_edit, only: [:edit, :update]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update] #:delete]
   
   def index
     @furimas = Furima.order("created_at DESC")
@@ -20,18 +21,12 @@ class FurimasController < ApplicationController
   end
     
   def show
-    @furima = Furima.find(params[:id])
   end
 
   def edit
-    @furima = Furima.find(params[:id])
-    unless @furima.user_id == current_user.id
-      redirect_to root_path
-    end
   end
 
   def update
-    @furima = Furima.find(params[:id])
     if @furima.update(furima_paramas)
       redirect_to furima_path(@furima.id)
     else
@@ -46,7 +41,15 @@ class FurimasController < ApplicationController
     params.require(:furima).permit(:product, :content, :price, :category_id, :condition_id, :delivery_charge_id, :prefecture_id, :time_required_id, :image).merge(user_id: current_user.id)
   end
 
+  def set_furima
+    @furima = Furima.find(params[:id])
+  end
 
+  def set_edit
+    unless @furima.user_id == current_user.id
+      redirect_to root_path
+    end
+  end
   
 
 end
