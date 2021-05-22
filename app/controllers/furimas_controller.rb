@@ -36,8 +36,10 @@ class FurimasController < ApplicationController
 
   def destroy
     furima = Furima.find(params[:id])
+    if user_signed_in? && current_user.id == furima.user_id
     furima.destroy
     redirect_to root_path    
+    end
   end
 
 
