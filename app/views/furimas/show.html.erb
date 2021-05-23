@@ -28,13 +28,14 @@
       <%= link_to "商品の編集", edit_furima_path, method: :get, class: "item-red-btn" %>
       <p class="or-text">or</p>
       <%= link_to "削除", furima_path(@furima.id), method: :delete, class:"item-destroy" %>
+    <% end %>
 
-      <% unless current_user.id == @furima.user_id %>
-      <%= link_to "購入画面に進む", "#" ,class:"item-red-btn"%>
+      <% if current_user.id != @furima.user_id %>
+      <%= link_to "購入画面に進む", buyers_path ,class:"item-red-btn"%>
       <% end %>
 
 
-    <% end %>
+    
 
     <div class="item-explain-box">
       <span><%= @furima.content %></span>
