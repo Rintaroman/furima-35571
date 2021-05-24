@@ -31,7 +31,7 @@
     <% end %>
 
       <% if current_user.id != @furima.user_id %>
-      <%= link_to "購入画面に進む", buyers_path ,class:"item-red-btn"%>
+      <%= link_to "購入画面に進む", furima_histories_path(@furima.id) ,class:"item-red-btn"%>
       <% end %>
 
 

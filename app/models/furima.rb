@@ -7,6 +7,7 @@ class Furima < ApplicationRecord
   belongs_to :time_required
   belongs_to :user
   has_one_attached :image
+  has_one :history
 
   with_options presence: true do
     validates :image
