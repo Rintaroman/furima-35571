@@ -1,10 +1,10 @@
 class Furima < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :category
-  belongs_to :condition
-  belongs_to :delivery_charge
-  belongs_to :prefecture
-  belongs_to :time_required
+  belongs_to_active_hash :category
+  belongs_to_active_hash :condition
+  belongs_to_active_hash :delivery_charge
+  belongs_to_active_hash :prefecture
+  belongs_to_active_hash :time_required
   belongs_to :user
   has_one_attached :image
   has_one :history
