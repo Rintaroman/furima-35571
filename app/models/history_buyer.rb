@@ -1,7 +1,7 @@
 class HistoryBuyer
   include ActiveModel::Model
   
-  attr_accessor :postal_code, :city, :address, :building_name, :phone_number, :prefecture_id, :user_id, :furima_id
+  attr_accessor :postal_code, :city, :address, :building_name, :phone_number, :prefecture_id, :user_id, :furima_id, :token
   
   with_options presence: true do
     validates :postal_code
@@ -11,6 +11,7 @@ class HistoryBuyer
     validates :phone_number
     validates :user_id
     validates :furima_id
+    validates :token
   end
 
   validates :prefecture_id, numericality: { other_than: 0 }

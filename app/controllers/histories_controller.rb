@@ -5,8 +5,10 @@ class HistoriesController < ApplicationController
   end
 
   def create
-    @history_buyer = HistoryBuyer.new(buyer_paramas)
+    @furima = Furima.find(params[:furima_id])
+    @history_buyer = HistoryBuyer.new(buyer_params)
     if @history_buyer.valid?
+      set_item
       @history_buyer.save
       redirect_to root_path
     else
@@ -18,8 +20,18 @@ class HistoriesController < ApplicationController
 
   private
 
-  def buyer_paramas
-    params.require(:history_buyer).permit(:postal_code, :city, :address, :building_name, :phone_number, :prefecture_id ).merge(user_id: current_user.id, furima_id: params[:furima_id])
+  def buyer_params
+    params.require(:history_buyer).permit(:postal_code, :city, :address, :building_name, :phone_number, :prefecture_id ).merge(user_id: current_user.id, furima_id: params[:furima_id], token: params[:token])
   end
+
+  def set_item
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+      Payjp::Charge.create(
+        amount: @furima.price,  
+        card: buyer_params[:token],    
+        currency: 'jpy'                 
+      )
+  end
+
 
 end
