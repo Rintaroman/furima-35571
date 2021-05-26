@@ -1,11 +1,18 @@
 class HistoriesController < ApplicationController
+  before_action :authenticate_user!, only: [:index, :create]
+  before_action :set_furima, only: [:index, :create]
+  before_action :set_index, only: [:index, :create]
+  before_action :set_history, only: [:index, :create]
+
+
   def index
-    @furima = Furima.find(params[:furima_id])
     @history_buyer = HistoryBuyer.new
+    if @furima.user_id == current_user.id
+      redirect_to root_path
+    end
   end
 
   def create
-    @furima = Furima.find(params[:furima_id])
     @history_buyer = HistoryBuyer.new(buyer_params)
     if @history_buyer.valid?
       set_item
@@ -33,5 +40,20 @@ class HistoriesController < ApplicationController
       )
   end
 
+  def set_furima
+    @furima = Furima.find(params[:furima_id])
+  end
+
+  def set_index
+    if @furima.user_id == current_user.id
+      redirect_to root_path
+    end  
+  end
+
+  def set_history
+    if @furima.history.present?
+      redirect_to root_path
+    end    
+  end
 
 end
