@@ -25,5 +25,6 @@ class User < ApplicationRecord
   end
 
   has_many :furimas
+  has_many :histories
 end
 

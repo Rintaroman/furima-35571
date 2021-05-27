@@ -54,7 +54,7 @@ class FurimasController < ApplicationController
   end
 
   def set_edit
-    unless @furima.user_id == current_user.id
+    unless @furima.user_id == current_user.id && @furima.history.blank?
       redirect_to root_path
     end
   end

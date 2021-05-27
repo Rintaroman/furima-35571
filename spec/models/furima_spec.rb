@@ -23,44 +23,45 @@ RSpec.describe Furima, type: :model do
         @furima.valid?
         expect(@furima.errors.full_messages).to include("Content can't be blank")
       end
-      it 'priceが空では出品できない場合' do
-        @furima.price= ''
-        @furima.valid?
-        expect(@furima.errors.full_messages).to include("Price can't be blank")
-      end
-      it 'category_idが--では出品できない場合' do
-        @furima.category_id= 0
-        @furima.valid?
-        expect(@furima.errors.full_messages).to include("Category must be other than 0")
-      end
-      it 'condition_idが--では出品できない場合' do
-        @furima.condition_id= 0
-        @furima.valid?
-        expect(@furima.errors.full_messages).to include("Condition must be other than 0")
-      end
-      it 'delivery_charge_idが--では出品できない場合' do
-        @furima.delivery_charge_id= 0
-        @furima.valid?
-        expect(@furima.errors.full_messages).to include("Delivery charge must be other than 0")
-      end
-      it 'prefecture_idが--では出品できない場合' do
-        @furima.prefecture_id= 0
-        @furima.valid?
-        expect(@furima.errors.full_messages).to include("Prefecture must be other than 0")
-      end
-      it 'time_required_idが--では出品できない場合' do
-        @furima.time_required_id= 0
-        @furima.valid?
-        expect(@furima.errors.full_messages).to include("Time required must be other than 0")
-      end
-
-      it 'imageが空では出品できない場合' do
-        @furima.image = nil 
-        @furima.valid?
-        expect(@furima.errors.full_messages).to include("Image can't be blank")
-      end
-      
-      it '販売価格が300円未満では出品できない場合' do
+    
+    it 'category_idが--では出品できない場合' do
+      @furima.category_id= 0
+      @furima.valid?
+      expect(@furima.errors.full_messages).to include("Category must be other than 0")
+    end
+    it 'condition_idが--では出品できない場合' do
+      @furima.condition_id= 0
+      @furima.valid?
+      expect(@furima.errors.full_messages).to include("Condition must be other than 0")
+    end
+    it 'delivery_charge_idが--では出品できない場合' do
+      @furima.delivery_charge_id= 0
+      @furima.valid?
+      expect(@furima.errors.full_messages).to include("Delivery charge must be other than 0")
+    end
+    it 'prefecture_idが--では出品できない場合' do
+      @furima.prefecture_id= 0
+      @furima.valid?
+      expect(@furima.errors.full_messages).to include("Prefecture must be other than 0")
+    end
+    it 'time_required_idが--では出品できない場合' do
+      @furima.time_required_id= 0
+      @furima.valid?
+      expect(@furima.errors.full_messages).to include("Time required must be other than 0")
+    end
+    
+    it 'imageが空では出品できない場合' do
+      @furima.image = nil 
+      @furima.valid?
+      expect(@furima.errors.full_messages).to include("Image can't be blank")
+    end
+    
+    it 'priceが空では出品できない場合' do
+      @furima.price= ''
+      @furima.valid?
+      expect(@furima.errors.full_messages).to include("Price can't be blank")
+    end
+    it '販売価格が300円未満では出品できない場合' do
         @furima.price= 10
         @furima.valid?
         expect(@furima.errors.full_messages).to include("Price must be greater than or equal to 300")
@@ -83,7 +84,6 @@ RSpec.describe Furima, type: :model do
       it '販売価格は半角英語だけでは登録できないこと' do
         @furima.price= 'aaa'
         @furima.valid?
-        binding.pry
         expect(@furima.errors.full_messages).to include("Price is not a number")
       end
       
