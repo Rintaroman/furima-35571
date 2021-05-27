@@ -16,7 +16,7 @@ class HistoryBuyer
 
   validates :prefecture_id, numericality: { other_than: 0 }
 
-  validates :postal_code, presence: true, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
+  validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
 
   validates :phone_number, length: {maximum: 11 }, numericality: { only_integer: true}
 
