@@ -30,9 +30,9 @@
       <%= link_to "削除", furima_path(@furima.id), method: :delete, class:"item-destroy" %>
     <% end %>
 
-      <% if current_user.id != @furima.user_id && @furima.history.blank?%>
+    <% if user_signed_in? && current_user.id != @furima.user_id && @furima.history.blank?%>
       <%= link_to "購入画面に進む", furima_histories_path(@furima.id) ,class:"item-red-btn"%>
-      <% end %>
+    <% end %>
 
 
     
