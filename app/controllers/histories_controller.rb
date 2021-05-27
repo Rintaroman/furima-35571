@@ -7,9 +7,7 @@ class HistoriesController < ApplicationController
 
   def index
     @history_buyer = HistoryBuyer.new
-    if @furima.user_id == current_user.id
-      redirect_to root_path
-    end
+    set_index
   end
 
   def create

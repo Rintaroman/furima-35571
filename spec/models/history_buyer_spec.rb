@@ -76,6 +76,23 @@ RSpec.describe HistoryBuyer, type: :model do
         @history_buyer.valid?
         expect(@history_buyer.errors.full_messages).to include("Furima can't be blank")
       end
+      it 'phone_numberは英数混合では購入できないこと' do
+        @history_buyer.phone_number = '123aaaabbbb'
+        @history_buyer.valid?
+        expect(@history_buyer.errors.full_messages).to include("Phone number is not a number")
+      end
+      it 'phone_number英字のみでは購入できないこと' do
+        @history_buyer.phone_number = 'aaaaaaabbbb'
+        @history_buyer.valid?
+        expect(@history_buyer.errors.full_messages).to include("Phone number is not a number")
+      end
+      it 'phone_numberは全角数字の場合購入できないこと' do
+        @history_buyer.phone_number = '１２３４５６７８９１２'
+        @history_buyer.valid?
+        expect(@history_buyer.errors.full_messages).to include("Phone number is not a number")
+      end
+
+
     end
 
 
