@@ -7,7 +7,6 @@ class HistoriesController < ApplicationController
 
   def index
     @history_buyer = HistoryBuyer.new
-    set_index
   end
 
   def create

@@ -61,20 +61,10 @@ RSpec.describe HistoryBuyer, type: :model do
         @history_buyer.valid?
         expect(@history_buyer.errors.full_messages).to include("Phone number is too long (maximum is 11 characters)")
       end
-      it "tokenが空では購入できないこと" do
-        @history_buyer.token = nil
+      it 'phone_numberが9桁以下では購入できないこと' do
+        @history_buyer.phone_number = '123456789'
         @history_buyer.valid?
-        expect(@history_buyer.errors.full_messages).to include("Token can't be blank")
-      end
-      it 'user_idが紐付いていないと購入できないこと' do
-        @history_buyer.user_id = nil
-        @history_buyer.valid?
-        expect(@history_buyer.errors.full_messages).to include("User can't be blank")
-      end
-      it 'furima_idが紐付いていないと購入できないこと' do
-        @history_buyer.furima_id = nil
-        @history_buyer.valid?
-        expect(@history_buyer.errors.full_messages).to include("Furima can't be blank")
+        expect(@history_buyer.errors.full_messages).to include("Phone number is too short (minimum is 10 characters)")
       end
       it 'phone_numberは英数混合では購入できないこと' do
         @history_buyer.phone_number = '123aaaabbbb'
@@ -90,6 +80,21 @@ RSpec.describe HistoryBuyer, type: :model do
         @history_buyer.phone_number = '１２３４５６７８９１２'
         @history_buyer.valid?
         expect(@history_buyer.errors.full_messages).to include("Phone number is not a number")
+      end
+      it "tokenが空では購入できないこと" do
+        @history_buyer.token = nil
+        @history_buyer.valid?
+        expect(@history_buyer.errors.full_messages).to include("Token can't be blank")
+      end
+      it 'user_idが紐付いていないと購入できないこと' do
+        @history_buyer.user_id = nil
+        @history_buyer.valid?
+        expect(@history_buyer.errors.full_messages).to include("User can't be blank")
+      end
+      it 'furima_idが紐付いていないと購入できないこと' do
+        @history_buyer.furima_id = nil
+        @history_buyer.valid?
+        expect(@history_buyer.errors.full_messages).to include("Furima can't be blank")
       end
 
 

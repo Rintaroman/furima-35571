@@ -23,15 +23,14 @@
       </span>
     </div>
 
-    <% if user_signed_in? && current_user.id == @furima.user.id && @furima.history.blank?%>
-
-      <%= link_to "商品の編集", edit_furima_path, method: :get, class: "item-red-btn" %>
-      <p class="or-text">or</p>
-      <%= link_to "削除", furima_path(@furima.id), method: :delete, class:"item-destroy" %>
-    <% end %>
-
-    <% if user_signed_in? && current_user.id != @furima.user_id && @furima.history.blank?%>
-      <%= link_to "購入画面に進む", furima_histories_path(@furima.id) ,class:"item-red-btn"%>
+    <% if user_signed_in? && @furima.history.blank? %>
+      <% if current_user.id == @furima.user_id %>
+        <%= link_to "商品の編集", edit_furima_path, method: :get, class: "item-red-btn" %>
+        <p class="or-text">or</p>
+        <%= link_to "削除", furima_path(@furima.id), method: :delete, class:"item-destroy" %>
+      <% else %>
+        <%= link_to "購入画面に進む", furima_histories_path(@furima.id) ,class:"item-red-btn"%>
+      <% end %>
     <% end %>
 
 
